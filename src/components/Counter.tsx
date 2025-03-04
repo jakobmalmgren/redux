@@ -15,7 +15,11 @@ const Counter = () => {
     return state.counter.value;
     // måste va samma som store counter..hur hänger de ihop??
   });
-
+  const [name, setName] = useState("");
+  const handleName = (e) => {
+    dispatch(changeName(e.target.value));
+    setName(e.target.value);
+  };
   const dispatch = useDispatch();
   return (
     <div>
@@ -64,12 +68,7 @@ const Counter = () => {
       </button>
       <h1>value :{counterValue} </h1>
       <h1>write your name:</h1>
-      <input
-        type="text"
-        onChange={(e) => {
-          dispatch(changeName(e.target.value));
-        }}
-      />
+      <input type="text" value={name} onChange={handleName} />
     </div>
   );
 };
