@@ -20,8 +20,16 @@ const counterSlice = createSlice({
     incrementByNumber: (state, action) => {
       state.value = state.value + action.payload;
     },
+    reset: (state) => {
+      state.value = 0;
+    },
+    double: (state) => {
+      state.value = state.value * 2;
+    },
   },
 });
+console.log(counterSlice);
 
-export const { increment, decrement, incrementByNumber } = counterSlice.actions;
+export const { double, reset, increment, decrement, incrementByNumber } =
+  counterSlice.actions;
 export default counterSlice.reducer;

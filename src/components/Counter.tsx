@@ -1,11 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment, incrementByNumber } from "../redux/counterSlice";
+import {
+  double,
+  reset,
+  decrement,
+  increment,
+  incrementByNumber,
+} from "../redux/counterSlice";
+import { changeName } from "../redux/typeNameSlice";
 import { RootState } from "../redux/store";
 import { useState } from "react";
 const Counter = () => {
   const [amount, setAmount] = useState("");
   const counterValue = useSelector((state: RootState) => {
     return state.counter.value;
+    // måste va samma som store counter..hur hänger de ihop??
   });
 
   const dispatch = useDispatch();
@@ -40,7 +48,28 @@ const Counter = () => {
           setAmount(Number(e.target.value));
         }}
       />
+      <button
+        onClick={() => {
+          dispatch(reset());
+        }}
+      >
+        reset 0
+      </button>
+      <button
+        onClick={() => {
+          dispatch(double());
+        }}
+      >
+        double me
+      </button>
       <h1>value :{counterValue} </h1>
+      <h1>write your name:</h1>
+      <input
+        type="text"
+        onChange={(e) => {
+          dispatch(changeName(e.target.value));
+        }}
+      />
     </div>
   );
 };
